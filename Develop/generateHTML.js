@@ -25,7 +25,8 @@ const colors = {
   }
 };
 
-let htmlFile = function generateHTML(data) {
+function generateHTML(data) {
+  console.log(data);
   return `<!DOCTYPE html>
 <html lang="en">
    <head>
@@ -184,16 +185,16 @@ let htmlFile = function generateHTML(data) {
       <body>
             <container>
                 <div class="wrapper"></div>
-                <div class="photo-header"><img src="https://avatars0.githubusercontent.com/u/53844970?v=4" alt="profile img">
+                <div class="photo-header"><img src="${data.avatar_url}" alt="profile img">
                     <h1>Hi!</h1>
-                    <h1>My name is ${userName}!</h1>
-                    <h4>Currently &#64; ${company}</h4>
+                    <h1>My name is ${data.name}!</h1>
+                    <h4>Currently &#64; ${data.company}</h4>
                     
                     <div class="links-nav">
                         <h4 class="nav-link">
-                            <a><i class="fas fa-location-arrow"></i>${location}</a>
-                            <a href="${profile}"><i class="fab fa-github-alt"></i>GitHub</a>
-                            <a href="${blog}"><i class="fas fa-rss"></i>Blog</a>
+                            <a><i class="fas fa-location-arrow"></i>${data.location}</a>
+                            <a href="${data.html_url}"><i class="fab fa-github-alt"></i>GitHub</a>
+                            <a href="${data.blog}"><i class="fas fa-rss"></i>Blog</a>
                         </h4>
                     </div>
                 </div>
@@ -201,19 +202,19 @@ let htmlFile = function generateHTML(data) {
 
             <container>
                 <div class="main">
-                    <h3 id="userBio">${bio}</h3>
+                    <h3 id="userBio">${data.bio}</h3>
                 </div>
                 <div class="row">
                     <div class="col">
                         <div class="card">
                             <h2>Public Repositories</h2>
-                            <h3>${repo}</h3>
+                            <h3>${data.public_repos}</h3>
                         </div>
                     </div>
                     <div class="col">
                         <div class="card">
                             <h2>Followers</h2>
-                            <h3>${followers}</h3>
+                            <h3>${data.followers}</h3>
                         </div>
                     </div>
                 </div>
@@ -221,13 +222,13 @@ let htmlFile = function generateHTML(data) {
                     <div class="col">
                         <div class="card">
                             <h2>GitHub Stars</h2>
-                            <h3>${stars}</h3>
+                            <h3>${data.stars}</h3>
                         </div>
                     </div>
                     <div class="col">
                         <div class="card">
                             <h2>Following</h2>
-                            <h3>${Following}</h3>
+                            <h3>${data.following}</h3>
                         </div>
                     </div>
                 </div>
@@ -238,7 +239,4 @@ let htmlFile = function generateHTML(data) {
       </html>`
         }
 
-module.exports = {
-  colors: colors,
-  htmlFile: htmlFile
-};
+module.exports = generateHTML;
